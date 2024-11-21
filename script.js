@@ -35,11 +35,18 @@ function generateCard(book){
     bookCard.appendChild(dateP);
 
     return bookCard;
-
 }
 
+function toggleDialog(){
+    const dialogBtn = document.querySelector("#show-dialog");
+    dialogBtn.addEventListener("click", () => {
+        console.log("clcl");
+        const dialog = document.querySelector("#add-book");
+        dialog.showModal();
+    });
+}
 
 addBookToLibrary("hello", "hi ", "23");
 addBookToLibrary("hi", "je;p", "er");
 displayBooks();
-console.log(myLibrary)
+toggleDialog();

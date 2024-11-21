@@ -7,8 +7,22 @@
     <title>Library</title>
 </head>
 <body>
-    <h1 class="header">Welcome to my Library</h1>
-    <div class="books-container"></div>
+    <div class="container">
+        <h1 class="header">Welcome to my Library</h1>
+        <div class="books-container"></div>
+        <button id="show-dialog">Add Book</button>
+    </div>
+
+
+    <dialog id="add-book">
+        <form>
+            <label for="name">Author name:</label><input type="text"  name="name" id="name">
+            <label for="title">Title:</label><input type="text" name="title" id="title">
+            <label for="date">Publishing date:</label><input type="date"  name="date" id="date">
+            <button formmethod="dialog" type="submit">Cancel</button>
+            <button type="submit">Submit</button>
+        </form>
+      </dialog>
 
     <script src="script.js"></script>
 </body>
