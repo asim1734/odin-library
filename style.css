@@ -2,4 +2,36 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.header{
+    text-align: center;
+    font-size: 3rem;
+    margin: 5px;
+}
+
+.book-card{
+    background-color: rgb(61, 44, 2);
+    color: white;
+    text-align: left;
+    line-height: 30px;
+    font-size: 1.4rem;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.books-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit , 300px);
+    grid-template-rows: repeat(auto-fit, 200px);
+    gap: 5px;
+    width: 60%;
 }
