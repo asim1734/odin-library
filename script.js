@@ -1,4 +1,14 @@
 const myLibrary = [];
+const dialog = document.querySelector("#add-book");
+
+function init(){    
+    addBookToLibrary("hello", "hi ", "23");
+    addBookToLibrary("hi", "je;p", "er");
+    displayBooks();
+    toggleDialog();
+    getFormData();
+
+}
 
 function Book(title, authorName, publishingDate) {
     this.title = title;
@@ -41,12 +51,23 @@ function toggleDialog(){
     const dialogBtn = document.querySelector("#show-dialog");
     dialogBtn.addEventListener("click", () => {
         console.log("clcl");
-        const dialog = document.querySelector("#add-book");
         dialog.showModal();
     });
 }
 
-addBookToLibrary("hello", "hi ", "23");
-addBookToLibrary("hi", "je;p", "er");
-displayBooks();
-toggleDialog();
+function getFormData(){
+    const form = document.querySelector("#add-book > form");
+    form.addEventListener('submit', function(event) {
+        event.preventDefault(); 
+        formInputs = form.querySelectorAll('input');
+        formValues = []
+        formInputs.forEach(input => {
+            formValues.push(input.value);
+        });
+        console.log(formValues);
+        dialog.close();
+        console.log('Form submitted');
+    });
+}
+
+init()
