@@ -25,6 +25,7 @@
     font-size: 1.4rem;
     padding: 20px;
     border-radius: 10px;
+    background-color: white;
 }
 
 .books-container{
@@ -33,6 +34,9 @@
     grid-template-rows: repeat(auto-fit, 200px);
     gap: 10px;
     width: 60%;
+    background-color: beige;
+    padding: 20px;
+    border-radius: 20px;
 }
 
 dialog {

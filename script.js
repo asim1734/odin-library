@@ -6,8 +6,6 @@ const booksContainer = document.querySelector(".books-container");
 var bookID = 0;
 
 function init(){    
-    addBookToLibrary("hello", "hi ", "23");
-    addBookToLibrary("hi", "je;p", "er");
     displayBooks();
     toggleDialog();
     handleUserInput();
@@ -20,8 +18,11 @@ function Book(title, authorName, publishingDate) {
 }
 
 function addBookToLibrary(title, authorName, publishingDate) {
-  const book = new Book(title, authorName, publishingDate);
-  myLibrary.push(book);
+    if(myLibrary.length == 0){
+        booksContainer.textContent = "";
+    }
+    const book = new Book(title, authorName, publishingDate);
+    myLibrary.push(book);
 }
 
 function displayBooks(){
@@ -90,6 +91,9 @@ function deleteCard(event){
             myLibrary.splice(i, 1);
             cards.splice(i,1);
         }
+    }
+    if (cards.length == 0){
+        booksContainer.textContent = "No Books Added";
     }
     
 }
