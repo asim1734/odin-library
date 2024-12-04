@@ -1,13 +1,16 @@
-const myLibrary = [];
+let myLibrary = [];
+let cards = [];
 const dialog = document.querySelector("#add-book");
+const booksContainer = document.querySelector(".books-container");
+
+var bookID = 0;
 
 function init(){    
     addBookToLibrary("hello", "hi ", "23");
     addBookToLibrary("hi", "je;p", "er");
     displayBooks();
     toggleDialog();
-    getFormData();
-
+    handleUserInput();
 }
 
 function Book(title, authorName, publishingDate) {
@@ -22,7 +25,6 @@ function addBookToLibrary(title, authorName, publishingDate) {
 }
 
 function displayBooks(){
-    const booksContainer = document.querySelector(".books-container");
     for( var i = 0 ; i < myLibrary.length ; i++){
         booksContainer.appendChild(generateCard(myLibrary[i]));
     }
@@ -31,7 +33,7 @@ function displayBooks(){
 function generateCard(book){
     const bookCard = document.createElement('div');
     bookCard.classList.add("book-card");
-
+    bookCard.setAttribute('id' , bookID)
     const titleP = document.createElement('p');
     const nameP = document.createElement('p');
     const dateP = document.createElement('p');
@@ -44,18 +46,28 @@ function generateCard(book){
     bookCard.appendChild(nameP);
     bookCard.appendChild(dateP);
 
+    const delBtn = document.createElement("button");
+    delBtn.classList.add("del-btn");
+    delBtn.addEventListener("click" , (event) =>{
+        deleteCard(event);
+    })
+    delBtn.id = bookID++;
+
+    delBtn.textContent = "Delete";
+    bookCard.appendChild(delBtn);
+    cards.push(bookCard);
+
     return bookCard;
 }
 
 function toggleDialog(){
     const dialogBtn = document.querySelector("#show-dialog");
     dialogBtn.addEventListener("click", () => {
-        console.log("clcl");
         dialog.showModal();
     });
 }
 
-function getFormData(){
+function handleUserInput(){
     const form = document.querySelector("#add-book > form");
     form.addEventListener('submit', function(event) {
         event.preventDefault(); 
@@ -64,10 +76,27 @@ function getFormData(){
         formInputs.forEach(input => {
             formValues.push(input.value);
         });
-        console.log(formValues);
         dialog.close();
-        console.log('Form submitted');
+        displayBook(formValues);
     });
+    
+}
+    
+function deleteCard(event){
+    let bookID = event.target.id;
+    for(let i = 0 ; i < cards.length ; i++){
+        if (cards[i].id == bookID){
+            booksContainer.removeChild(cards[i]);
+            myLibrary.splice(i, 1);
+            cards.splice(i,1);
+        }
+    }
+    
+}
+
+function displayBook(bookData){
+    addBookToLibrary(...bookData);
+    booksContainer.appendChild(generateCard(myLibrary[myLibrary.length - 1]));
 }
 
 init()
